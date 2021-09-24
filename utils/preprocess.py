@@ -1,2 +1,4 @@
-def test_preprocess():
+def preprocess():
 	print('hi from preprocess')
+
+	return 2

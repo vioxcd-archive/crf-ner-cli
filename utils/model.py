@@ -1,2 +1,4 @@
-def test_model():
+def model():
 	print('hi from model')
+
+	return 2
