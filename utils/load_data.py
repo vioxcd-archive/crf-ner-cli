@@ -1,4 +1,10 @@
-def load_data():
-	print("hi from load_data. I return 2")
+import os
 
-	return 2
+
+def load_paths(DIR_PATH):
+	files = os.listdir(DIR_PATH)
+
+	if len(files) == 0:
+		raise FileNotFoundError
+
+	return files
