@@ -1,5 +1,7 @@
-from utils.model import test_model
-from utils.preprocess import test_preprocess
+from utils.load_data import load_data
+from utils.model import model
+from utils.preprocess import preprocess
 
-test_preprocess()
-test_model()
+load_data()
+preprocess()
+model()
