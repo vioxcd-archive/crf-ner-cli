@@ -2,7 +2,7 @@ import os
 import tempfile
 import unittest
 
-from utils.load_data import load_data, load_paths
+from utils.load_data import load_paths, process_strings
 
 
 class TestLoadData(unittest.TestCase):
@@ -19,6 +19,25 @@ class TestLoadData(unittest.TestCase):
 
 			one_file_from_dir = load_paths(tmpdir)[0]
 			self.assertEqual(one_file_from_dir, TEST_FILENAME)
+	
+	def test_data_format_is_as_expected(self):
+		"""test processing loaded strings using process_strings"""
+		input_format = "A O\nB O\nC O\n\nD O\nE O\nF O\n"
+		expected_output = [
+			('A', 'O'), ('B', 'O'), ('C', 'O'),
+			('D', 'O'), ('E', 'O'), ('F', 'O'),
+		]
 
+		output = process_strings(input_format)
+
+		self.assertIsInstance(output, list)
+		self.assertNotEqual(len(output), 0)
+
+		instance = output[0]
+		self.assertIsInstance(instance, tuple)
+		self.assertEqual(len(instance), 2)
+		
+		self.assertCountEqual(output, expected_output)
+			
 if __name__ == '__main__':
 	unittest.main()
