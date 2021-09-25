@@ -1,5 +1,4 @@
 import os
-from collections import namedtuple
 
 
 def load_paths(DIR_PATH):
