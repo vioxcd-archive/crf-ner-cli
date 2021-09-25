@@ -2,10 +2,6 @@ import os
 from collections import namedtuple
 
 
-class Sentence():
-	pass
-
-
 def load_paths(DIR_PATH):
 	files = os.listdir(DIR_PATH)
 	
