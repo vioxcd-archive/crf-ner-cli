@@ -36,10 +36,3 @@ def load_data(FILE_PATHS):
 			data.extend(process_strings(as_strings))
 
 	return data
-
-# PATH = os.path.abspath('/home/uchan/code/fun/crf_cli/tests/test_data')
-PATH = os.path.abspath('/home/uchan/code/fun/crf_cli/data')
-paths = load_paths(PATH)
-result = load_data(paths)
-
-print(len(result))
