@@ -29,8 +29,15 @@ def load_data(FILE_PATHS):
 	data = []
 
 	for fp in FILE_PATHS:
-		with open(fp, 'r') as f:
+		with open(fp, 'r', encoding='ISO-8859-1') as f:
 			as_strings = f.read()
 			data.append(process_strings(as_strings))
 
 	return data
+
+# PATH = os.path.abspath('/home/uchan/code/fun/crf_cli/tests/test_data')
+PATH = os.path.abspath('/home/uchan/code/fun/crf_cli/data')
+paths = load_paths(PATH)
+result = load_data(paths)
+
+print(result)
