@@ -36,3 +36,9 @@ def load_data(FILE_PATHS):
 			data.extend(process_strings(as_strings))
 
 	return data
+
+def load(DIR_PATH):
+	paths = load_paths(DIR_PATH)
+	data = load_data(paths)
+
+	return data
