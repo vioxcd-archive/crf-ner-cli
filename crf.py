@@ -1,3 +1,8 @@
+import warnings
+
+warnings.filterwarnings('ignore')  # some class not in test_case (zero division)
+								   # crfsuite passing labels to classification_report
+
 from utils.load_data import load
 from utils.model import model
 from utils.preprocess import create_features
