@@ -3,7 +3,7 @@ from sklearn_crfsuite import CRF
 from sklearn_crfsuite.metrics import flat_classification_report, flat_f1_score
 
 
-def model(Xf, y, test_size):
+def train_model(Xf, y, test_size):
 	X_train, X_test, y_train, y_test = train_test_split(Xf, y, test_size=test_size)
 
 	crf = CRF(algorithm = 'lbfgs',
