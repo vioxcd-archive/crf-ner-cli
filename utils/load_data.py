@@ -1,4 +1,9 @@
 import os
+from collections import namedtuple
+
+
+class Sentence():
+	pass
 
 
 def load_paths(DIR_PATH):
@@ -13,17 +18,18 @@ def load_paths(DIR_PATH):
 
 def process_strings(as_strings):
 	as_list = as_strings.split('\n')
-	word_ner_pairs = []
+	word_ner = []  # [[(word, ner), (word, ner)], [ sentence ]]
+	sentence = []  # [(word, ner), (word, ner)]
 
-	for word_ner in as_list:
-		try:
-			word, ner = word_ner.split(' ')
-		except ValueError:
-			continue
-
-		word_ner_pairs.append((word, ner))
-
-	return word_ner_pairs
+	for row in as_list:
+		if row:  # akhir kalimat ditandai karakter newline
+			word, ner = row.split(' ')
+			sentence.append((word, ner))
+		else:
+			word_ner.append(sentence)
+			sentence = []  # buat kalimat baru
+	
+	return word_ner
 
 def load_data(FILE_PATHS):
 	data = []
@@ -31,7 +37,7 @@ def load_data(FILE_PATHS):
 	for fp in FILE_PATHS:
 		with open(fp, 'r', encoding='ISO-8859-1') as f:
 			as_strings = f.read()
-			data.append(process_strings(as_strings))
+			data.extend(process_strings(as_strings))
 
 	return data
 
@@ -40,4 +46,4 @@ PATH = os.path.abspath('/home/uchan/code/fun/crf_cli/data')
 paths = load_paths(PATH)
 result = load_data(paths)
 
-print(result)
+print(len(result))

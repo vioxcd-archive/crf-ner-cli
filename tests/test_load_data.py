@@ -2,7 +2,7 @@ import os
 import tempfile
 import unittest
 
-from utils.load_data import load_paths, process_strings
+from utils.load_data import load_data, load_paths, process_strings
 
 
 class TestLoadData(unittest.TestCase):
@@ -22,21 +22,26 @@ class TestLoadData(unittest.TestCase):
 	
 	def test_data_format_is_as_expected(self):
 		"""test processing loaded strings using process_strings"""
-		input_format = "A O\nB O\nC O\n\nD O\nE O\nF O\n"
+		input_dir = 'tests/test_data'
 		expected_output = [
-			('A', 'O'), ('B', 'O'), ('C', 'O'),
-			('D', 'O'), ('E', 'O'), ('F', 'O'),
+			[('A', 'O'), ('B', 'O'), ('C', 'O')],
+			[('D', 'O'), ('E', 'O'), ('F', 'O')],
+			[('K', 'O'), ('L', 'O'), ('M', 'O')],
+			[('N', 'O'), ('O', 'O'), ('P', 'O')],
 		]
 
-		output = process_strings(input_format)
+		paths = load_paths(input_dir)
+		output = load_data(paths)
 
 		self.assertIsInstance(output, list)
 		self.assertNotEqual(len(output), 0)
 
-		instance = output[0]
-		self.assertIsInstance(instance, tuple)
-		self.assertEqual(len(instance), 2)
-		
+		one_sentence = output[0]
+		self.assertIsInstance(one_sentence, list)
+
+		word_ner_pair = one_sentence[0]
+		self.assertIsInstance(word_ner_pair, tuple)
+		self.assertEqual(len(word_ner_pair), 2)
 		self.assertCountEqual(output, expected_output)
 			
 if __name__ == '__main__':
